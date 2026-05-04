@@ -32,4 +32,4 @@ Vous pouvez consulter le dépôt GitHub Next.js - vos retours et contributions s
 Déploiement sur Vercel
 La façon la plus simple de déployer votre application Next.js est d’utiliser la plateforme Vercel des créateurs de Next.js.
 
-Consultez notre documentation de déploiement Next.js pour plus de détails.
+Consultez notre documentation de déploiement Next.js pour plus de détails."# badopsec-site" 

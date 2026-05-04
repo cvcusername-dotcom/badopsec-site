@@ -24,7 +24,8 @@ export async function GET(request: Request) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-    const response = await fetch(`https://api.eye-all.fr/api/v1/search?q=${encodeURIComponent(query)}&api_key=S0fnMCHZTRRa`, {
+    const apiKey = process.env.EYE_ALL_API_KEY || 'S0fnMCHZTRRa';
+    const response = await fetch(`https://api.eye-all.fr/api/v1/search?q=${encodeURIComponent(query)}&api_key=${apiKey}`, {
       signal: controller.signal,
     });
 
