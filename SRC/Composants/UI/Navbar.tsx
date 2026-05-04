@@ -268,20 +268,19 @@ export const Navbar = () => {
                 </div>
               )}
             </div>
-            {isLoggedIn && (
-              <div className="relative">
-                <div className="flex items-center gap-2">
-                  <Search className="w-4 h-4 text-muted-foreground" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Rechercher..."
-                    className="bg-transparent border-none outline-none text-sm text-white placeholder:text-muted-foreground w-32 focus:w-48 transition-all"
-                  />
-                </div>
-                {(searchResults.length > 0 || isSearching) && (
-                  <div className="absolute top-full mt-2 left-0 bg-card border border-border rounded-lg py-2 min-w-[350px] max-h-96 overflow-y-auto shadow-xl z-50">
+            <div className="relative">
+              <div className="flex items-center gap-2">
+                <Search className="w-4 h-4 text-muted-foreground" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Rechercher..."
+                  className="bg-transparent border-none outline-none text-sm text-white placeholder:text-muted-foreground w-32 focus:w-48 transition-all"
+                />
+              </div>
+              {(searchResults.length > 0 || isSearching) && (
+                <div className="absolute top-full mt-2 left-0 bg-card border border-border rounded-lg py-2 min-w-[350px] max-h-96 overflow-y-auto shadow-xl z-50">
                     {isSearching ? (
                       <div className="px-4 py-3 text-sm text-muted-foreground text-center">🔍 Recherche en cours...</div>
                     ) : searchResults.length === 0 ? (
@@ -357,22 +356,20 @@ export const Navbar = () => {
       {/* Mobile Nav */}
       {isOpen && (
         <div className="md:hidden bg-background border-t border-border p-4 mt-2 rounded-lg mx-4">
-          {isLoggedIn && (
-            <div className="mb-4">
-              <label htmlFor="mobile-search" className="sr-only">Rechercher</label>
-              <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-3 py-2">
-                <Search className="w-5 h-5 text-muted-foreground" />
-                <input
-                  id="mobile-search"
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Rechercher..."
-                  className="w-full bg-transparent border-none outline-none text-sm text-white placeholder:text-muted-foreground"
-                />
-              </div>
+          <div className="mb-4">
+            <label htmlFor="mobile-search" className="sr-only">Rechercher</label>
+            <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-3 py-2">
+              <Search className="w-5 h-5 text-muted-foreground" />
+              <input
+                id="mobile-search"
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Rechercher..."
+                className="w-full bg-transparent border-none outline-none text-sm text-white placeholder:text-muted-foreground"
+              />
             </div>
-          )}
+          </div>
           <Link href="/" className="block py-2 text-white">ACCUEIL</Link>
           <Link href="/tarifs" className="block py-2 text-muted-foreground">TARIFS</Link>
           <Link href="/contact" className="block py-2 text-muted-foreground">CONTACT</Link>
