@@ -25,6 +25,7 @@ export const Navbar = () => {
   const [searchResults, setSearchResults] = useState<Record<string, unknown>[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const searchAbortControllerRef = useRef<AbortController | null>(null);
   const lastSearchQueryRef = useRef<string>("");
   const pathname = usePathname();
@@ -236,8 +237,30 @@ export const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 persistent-navbar">
       <div className="max-w-7xl mx-auto px-4 py-3">
-        <div className="flex items-center justify-between bg-background/80 backdrop-blur-md border border-border rounded-full px-6 py-2 shadow-lg">
-          <Logo />
+        <div className="relative flex items-center justify-between bg-background/80 backdrop-blur-md border border-border rounded-full px-6 py-2 shadow-lg">
+          <div className="flex items-center gap-3">
+            <Logo />
+            <button
+              type="button"
+              onClick={() => setIsMobileSearchOpen((prev) => !prev)}
+              className="md:hidden text-white p-2 rounded-full hover:bg-white/10"
+              aria-label={isMobileSearchOpen ? "Fermer la recherche" : "Ouvrir la recherche"}
+            >
+              <Search className="w-5 h-5" />
+            </button>
+            {isMobileSearchOpen && (
+              <div className="md:hidden flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-3 py-2 w-full max-w-[320px]">
+                <Search className="w-4 h-4 text-muted-foreground" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Rechercher..."
+                  className="w-full bg-transparent border-none outline-none text-sm text-white placeholder:text-muted-foreground"
+                />
+              </div>
+            )}
+          </div>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-10">
@@ -309,7 +332,6 @@ export const Navbar = () => {
                   </div>
                 )}
               </div>
-            )}
           </div>
 
           <div className="flex items-center gap-4">
