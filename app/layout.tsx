@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   icons: {
     icon: "https://ext.same-assets.com/3329413445/606803464.png",
   },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
 };
 
 export default function RootLayout({

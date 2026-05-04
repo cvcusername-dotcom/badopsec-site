@@ -309,7 +309,7 @@ export const Navbar = () => {
               </div>
               {(searchResults.length > 0 || isSearching) && (
                 <div className="absolute top-full mt-2 left-0 bg-card border border-border rounded-lg py-2 min-w-[350px] max-h-96 overflow-y-auto shadow-xl z-50">
-                    {isSearching ? (
+                    {isSearching && searchResults.length === 0 ? (
                       <div className="px-4 py-3 text-sm text-muted-foreground text-center">🔍 Recherche en cours...</div>
                     ) : searchResults.length === 0 ? (
                       <div className="px-4 py-3 text-sm text-muted-foreground text-center">Aucun résultat</div>
@@ -458,7 +458,7 @@ export const Navbar = () => {
               </div>
             </div>
             <div className="flex-1 overflow-y-auto relative z-10">
-              {isSearching ? (
+              {isSearching && searchResults.length === 0 ? (
                 <div className="flex items-center justify-center h-40">
                   <div className="text-center">
                     <div className="text-6xl mb-4">🔍</div>
