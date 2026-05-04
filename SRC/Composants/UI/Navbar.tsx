@@ -24,6 +24,11 @@ export const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Record<string, unknown>[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const isSearchingRef = useRef(false);
+  const setIsSearchingState = (value: boolean) => {
+    isSearchingRef.current = value;
+    setIsSearching(value);
+  };
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const searchAbortControllerRef = useRef<AbortController | null>(null);
@@ -150,13 +155,13 @@ export const Navbar = () => {
   const handleSearch = useCallback(async (query: string) => {
     if (!query.trim()) {
       setSearchResults([]);
-      setIsSearching(false);
+      setIsSearchingState(false);
       setIsSearchModalOpen(false);
       return;
     }
 
     // Skip if we're already searching for this exact query
-    if (lastSearchQueryRef.current === query && isSearching) {
+    if (lastSearchQueryRef.current === query && isSearchingRef.current) {
       return;
     }
 
@@ -166,7 +171,7 @@ export const Navbar = () => {
     }
 
     lastSearchQueryRef.current = query;
-    setIsSearching(true);
+    setIsSearchingState(true);
     searchAbortControllerRef.current = new AbortController();
 
     try {
@@ -191,8 +196,8 @@ export const Navbar = () => {
         setSearchResults([]);
       }
     }
-    setIsSearching(false);
-  }, [isSearching]);
+    setIsSearchingState(false);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -200,12 +205,12 @@ export const Navbar = () => {
         handleSearch(searchQuery);
       } else {
         setSearchResults([]);
-        setIsSearching(false);
+        setIsSearchingState(false);
         setIsSearchModalOpen(false);
       }
     }, 1200);
     return () => clearTimeout(timer);
-  }, [searchQuery, handleSearch]);
+  }, [searchQuery]);
 
   useEffect(() => {
     const getSession = async () => {
