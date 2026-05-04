@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 270 20% 6%;
+  --card-foreground: 0 0% 100%;
+  --popover: 270 20% 6%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 268 95% 58%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 270 15% 10%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 270 15% 8%;
+  --muted-foreground: 0 0% 60%;
+  --accent: 268 95% 58%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 270 15% 12%;
+  --input: 270 15% 8%;
+  --ring: 270 95% 60%;
+  --radius: 0.75rem;
+  --step-violet: #d39bff;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url('/25e45cf3153f5d88e4833a5133ffd821.jpg') center/cover fixed no-repeat;
+  color: hsl(var(--foreground));
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(270 30% 8%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(265 80% 40%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(265 80% 50%);
+}
+
+/* Cosmic background effect */
+.cosmic-bg {
+  background: transparent;
+  position: relative;
+}
+
+/* Star field effect */
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 230px 80px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.15), transparent),
+    radial-gradient(1px 1px at 370px 60px, rgba(255,255,255,0.25), transparent),
+    radial-gradient(2px 2px at 450px 200px, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 520px 100px, rgba(255,255,255,0.35), transparent),
+    radial-gradient(2px 2px at 600px 180px, rgba(255,255,255,0.15), transparent),
+    radial-gradient(1px 1px at 680px 50px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(2px 2px at 750px 220px, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 830px 90px, rgba(255,255,255,0.25), transparent),
+    radial-gradient(2px 2px at 900px 160px, rgba(255,255,255,0.18), transparent),
+    radial-gradient(1px 1px at 980px 70px, rgba(255,255,255,0.32), transparent),
+    radial-gradient(2px 2px at 1050px 200px, rgba(255,255,255,0.12), transparent);
+  background-size: 1100px 250px;
+  background-size: 1400px 400px;
+  animation: twinkle 8s ease-in-out infinite, move-stars 60s linear infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes move-stars {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(-10px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--step-violet) 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card glow effect */
+.card-glow {
+  position: relative;
+  background: linear-gradient(180deg, rgba(20,10,18,0.6) 0%, rgba(16,8,18,0.65) 100%);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg, rgba(142, 92, 243, 0.3) 0%, transparent 50%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Step card specific styles matching screenshot */
+.step-card {
+  position: relative;
+  border-radius: 1rem;
+  padding: 2rem;
+  background: linear-gradient(180deg, rgba(18,11,20,0.6) 0%, rgba(14,8,16,0.55) 100%);
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  transition: transform 280ms cubic-bezier(.2,.9,.2,1), box-shadow 280ms ease, border-color 280ms ease;
+}
+
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 50px rgba(20,8,40,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  border-color: rgba(184,107,255,0.12);
+}
+
+.step-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(211,155,255,0.18);
+  background: linear-gradient(180deg, rgba(211,155,255,0.08) 0%, rgba(211,155,255,0.03) 100%);
+  transition: transform 280ms ease, box-shadow 280ms ease;
+}
+
+.step-card:hover .step-icon {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(184,107,255,0.12);
+}
+
+.step-number {
+  color: var(--step-violet);
+  font-weight: 800;
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.step-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 0.5rem;
+}
+
+.step-desc {
+  color: rgba(255,255,255,0.55);
+  margin-top: 0.75rem;
+}
+
+.step-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(184,107,255,0.7);
+}
+
+/* Hover animation for cards */
+.card-glow {
+  transition: transform 300ms cubic-bezier(.2,.9,.2,1), box-shadow 300ms ease, border-color 300ms ease;
+}
+
+.card-glow:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(151, 90, 255, 0.18), inset 0 1px 0 rgba(255,255,255,0.02);
+  border-color: hsl(268 90% 55% / 0.9);
+}
+
+.card-glow .icon-bg {
+  transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease;
+}
+
+.card-glow:hover .icon-bg {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(184,107,255,0.12);
+  background: linear-gradient(135deg, rgba(184,107,255,0.18) 0%, rgba(184,107,255,0.08) 100%);
+}
+
+/* persistent navbar styling to keep it visible while scrolling */
+.persistent-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  pointer-events: auto;
+}
+
+.persistent-navbar .shadow-lg {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+
+/* avoid content jumping under fixed navbar */
+main {
+  padding-top: 72px;
+}
+
+/* Testimonial carousel */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 30s linear infinite;
+}
+
+/* Button hover effects */
+.btn-primary {
+  background: linear-gradient(135deg, #8e5cf3 0%, #7c53d2 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #9d6ff5 0%, #8e5cf3 100%);
+  box-shadow: 0 0 30px rgba(142, 92, 243, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid hsl(270 20% 25%);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  border-color: hsl(265 80% 60%);
+  background: rgba(142, 92, 243, 0.1);
+}
+
+/* Icon backgrounds */
+.icon-bg {
+  background: linear-gradient(135deg, rgba(142, 92, 243, 0.2) 0%, rgba(142, 92, 243, 0.1) 100%);
+  border: 1px solid rgba(142, 92, 243, 0.3);
+}
